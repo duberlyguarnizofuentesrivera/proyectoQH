@@ -28,7 +28,7 @@
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg blur blur-rounded top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
                 <div class="container-fluid pe-0">
-                    <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " href="../pages/dashboard.html">
+                    <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " th:href="@{index}">
                         Química Huánuco
                     </a>
                     <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse"
@@ -50,25 +50,25 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link me-2" href="../pages/profile.html">
+                                <a class="nav-link me-2" th:href="@{pages/proveedores}">
                                     <i class="fa fa-user opacity-6 text-dark me-1"></i>
                                     Proveedores
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link me-2" href="../pages/sign-up.html">
+                                <a class="nav-link me-2" th:href="@{pages/categorias}">
                                     <i class="fas fa-user-circle opacity-6 text-dark me-1"></i>
                                     Categorías
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link me-2" href="../pages/sign-in.html">
+                                <a class="nav-link me-2" th:href="@{pages/movimientos}">
                                     <i class="fas fa-key opacity-6 text-dark me-1"></i>
                                     Movimientos
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link me-2" href="../pages/sign-in.html">
+                                <a class="nav-link me-2" th:href="@{pages/anaqueles}">
                                     <i class="fas fa-key opacity-6 text-dark me-1"></i>
                                     Anaqueles
                                 </a>
@@ -76,7 +76,7 @@
                         </ul>
                         <li class="nav-item d-flex align-items-center">
                             <a class="btn btn-round btn-sm mb-0 btn-outline-primary me-2" target="_blank"
-                               href="https://www.creative-tim.com/builder/soft-ui?ref=navbar-dashboard">Iniciar
+                               th:href="@{pages/sign-in}">Iniciar
                                 Sesión</a>
                         </li>
 
