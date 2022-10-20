@@ -1,8 +1,8 @@
-package edu.utp.plataformaqh.repository;
+package edu.utp.proyectoqh.repository;
 
-import edu.utp.plataformaqh.entity.Rol;
-import org.apache.deltaspike.data.api.EntityRepository;
 
-public interface RolRepository extends EntityRepository<Rol, Long> {
-    Rol findById(Long id);
+import edu.utp.proyectoqh.model.Rol;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface RolRepository extends JpaRepository<Rol, Long> {
 }

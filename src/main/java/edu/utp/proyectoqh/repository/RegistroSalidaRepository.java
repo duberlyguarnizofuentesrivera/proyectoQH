@@ -1,13 +1,14 @@
-package edu.utp.plataformaqh.repository;
+package edu.utp.proyectoqh.repository;
 
-import edu.utp.plataformaqh.entity.RegistroSalida;
-import org.apache.deltaspike.data.api.EntityRepository;
+import edu.utp.proyectoqh.model.RegistroSalida;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface RegistroSalidaRepository extends EntityRepository<RegistroSalida, Long> {
-    RegistroSalida findById(Long id);
+public interface RegistroSalidaRepository extends JpaRepository<RegistroSalida, Long> {
     List<RegistroSalida> findByDniTransportista(String dniTransportista);
+
     List<RegistroSalida> findByEmpleadoId_Id(Long empleadoId);
+
     List<RegistroSalida> findBySucursalId_Id(Long sucursalId);
 }

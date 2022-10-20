@@ -1,12 +1,12 @@
-package edu.utp.plataformaqh.repository;
+package edu.utp.proyectoqh.repository;
 
-import edu.utp.plataformaqh.entity.Proveedor;
-import org.apache.deltaspike.data.api.EntityRepository;
+import edu.utp.proyectoqh.model.Proveedor;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface ProveedorRepository extends EntityRepository<Proveedor, Long> {
+public interface ProveedorRepository extends JpaRepository<Proveedor, Long> {
     List<Proveedor> findByRazonSocial(String razonSocial);
+
     List<Proveedor> findByRuc(String ruc);
-    Proveedor findById(Long id);
 }

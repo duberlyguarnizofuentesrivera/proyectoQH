@@ -1,13 +1,13 @@
-package edu.utp.plataformaqh.repository;
+package edu.utp.proyectoqh.repository;
 
-import edu.utp.plataformaqh.entity.Categoria;
-import org.apache.deltaspike.data.api.EntityRepository;
-import org.apache.deltaspike.data.api.Repository;
+
+import edu.utp.proyectoqh.model.Categoria;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface CategoriaRepository extends EntityRepository<Categoria, Long> {
+public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
     List<Categoria> findByNombre(String nombre);
-    Categoria findById(Long id);
 }

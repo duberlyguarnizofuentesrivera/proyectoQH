@@ -1,14 +1,16 @@
-package edu.utp.plataformaqh.entity;
+package edu.utp.proyectoqh.model;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.Hibernate;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -23,6 +25,7 @@ public class Proveedor {
             CascadeType.MERGE
     })
     @JoinTable(name = "proveedor_producto", joinColumns = {@JoinColumn(name = "proveedor_id")}, inverseJoinColumns = {@JoinColumn(name = "producto_id")})
+    @ToString.Exclude
 
     private Set<Producto> productos;
     @Column(nullable = false, unique = true)
@@ -31,6 +34,19 @@ public class Proveedor {
     private String ruc;
     private String direccion;
     private String telefono;
-    @Temporal(TemporalType.TIMESTAMP)
+    @Column(updatable = false, nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime fechaCreado;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Proveedor proveedor = (Proveedor) o;
+        return id != null && Objects.equals(id, proveedor.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

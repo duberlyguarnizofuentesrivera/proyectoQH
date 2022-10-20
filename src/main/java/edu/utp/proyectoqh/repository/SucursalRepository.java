@@ -1,11 +1,10 @@
-package edu.utp.plataformaqh.repository;
+package edu.utp.proyectoqh.repository;
 
-import edu.utp.plataformaqh.entity.Sucursal;
-import org.apache.deltaspike.data.api.EntityRepository;
+import edu.utp.proyectoqh.model.Sucursal;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface SucursalRepository extends EntityRepository<Sucursal, Long> {
-    Sucursal findById(Long id);
+public interface SucursalRepository extends JpaRepository<Sucursal, Long> {
     Sucursal findByNombre(String nombre);
-    Sucursal findByPersonaId_Id(Long personaId);
 
+    Sucursal findByPersonaId_Id(Long personaId);
 }

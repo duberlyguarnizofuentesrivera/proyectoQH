@@ -1,13 +1,14 @@
-package edu.utp.plataformaqh.repository;
+package edu.utp.proyectoqh.repository;
 
-import edu.utp.plataformaqh.entity.Persona;
-import org.apache.deltaspike.data.api.EntityRepository;
+import edu.utp.proyectoqh.model.Persona;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface PersonaRepository extends EntityRepository<Persona, Long> {
+public interface PersonaRepository extends JpaRepository<Persona, Long> {
     List<Persona> findByNombres(String nombre);
+
     List<Persona> findByApellidos(String apellido);
+
     List<Persona> findByDni(String dni);
-    Persona findById(Long id);
 }
