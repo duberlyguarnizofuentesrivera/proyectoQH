@@ -1,11 +1,12 @@
 package edu.utp.proyectoqh.model;
 
+import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.Hibernate;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Objects;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -18,6 +19,7 @@ public class Anaquel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(nullable = false)
     private int piso;
     @Column(nullable = false)
@@ -29,20 +31,9 @@ public class Anaquel {
     })
     @JoinTable(name = "anaquel_producto", joinColumns = {@JoinColumn(name = "anaquel_id")}, inverseJoinColumns = {@JoinColumn(name = "producto_id")})
     @ToString.Exclude
-    private Set<Producto> productos;
-    @Column(updatable = false, nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private Set<Producto> productos = new HashSet<>();
+    @CreationTimestamp
     private LocalDateTime fechaCreado;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Anaquel anaquel = (Anaquel) o;
-        return id != null && Objects.equals(id, anaquel.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
+    @UpdateTimestamp
+    private LocalDateTime fechaModificado;
 }

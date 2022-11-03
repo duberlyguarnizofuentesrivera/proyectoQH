@@ -1,11 +1,13 @@
 package edu.utp.proyectoqh.model;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
-import org.hibernate.Hibernate;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 @Getter
 @Setter
@@ -17,28 +19,26 @@ public class Persona {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(nullable = false, unique = true)
     private String dni;
-    @Column(nullable = false)
+
+    @NotBlank
     private String nombres;
-    @Column(nullable = false)
+
+    @NotBlank
     private String apellidos;
+
     private String direccion;
+
     private String telefono;
+
+    @Email
     private String email;
-    @Column(updatable = false, nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+
+    @CreationTimestamp
     private LocalDateTime fechaCreado;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Persona persona = (Persona) o;
-        return id != null && Objects.equals(id, persona.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
+    @UpdateTimestamp
+    private LocalDateTime fechaModificado;
 }

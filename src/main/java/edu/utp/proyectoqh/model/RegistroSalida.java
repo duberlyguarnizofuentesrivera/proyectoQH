@@ -1,11 +1,14 @@
 package edu.utp.proyectoqh.model;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 import lombok.*;
-import org.hibernate.Hibernate;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Objects;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -18,39 +21,38 @@ public class RegistroSalida {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ToString.Exclude
     @ManyToOne
     private Empleado empleadoId;
+
+    @ToString.Exclude
     @ManyToOne
     private Sucursal sucursalId;
-    @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "salidas_productos",
             joinColumns = {@JoinColumn(name = "registro_salida_id")},
             inverseJoinColumns = {@JoinColumn(name = "productos_id")}
     )
     @ToString.Exclude
-    private Set<Producto> productos;
+    private Set<Producto> productos = new HashSet<>();
+
+    @NotBlank
     private String nombreTransportista;
-    @Column(unique = true, nullable = false)
+
+    @NotBlank
     private String dniTransportista;
+
+    @Positive
     private double cantidad;
+
     private String obs;
-    @Column(updatable = false, nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+
+    @CreationTimestamp
     private LocalDateTime fechaCreado;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        RegistroSalida that = (RegistroSalida) o;
-        return id != null && Objects.equals(id, that.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
+    @UpdateTimestamp
+    private LocalDateTime fechaModificado;
 }

@@ -14,5 +14,5 @@ public interface EmpleadoRepository extends JpaRepository<Empleado, Long> {
 
     List<Empleado> findByPersonaId_Dni(String dni);
 
-    List<Empleado> findByRolId_Id(Long id);
+    List<Empleado> findByRol(String rol);
 }
