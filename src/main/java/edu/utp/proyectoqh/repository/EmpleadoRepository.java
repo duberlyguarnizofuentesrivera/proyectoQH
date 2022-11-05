@@ -1,5 +1,6 @@
 package edu.utp.proyectoqh.repository;
 
+import edu.utp.proyectoqh.enums.UserRol;
 import edu.utp.proyectoqh.model.Empleado;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -14,5 +15,5 @@ public interface EmpleadoRepository extends JpaRepository<Empleado, Long> {
 
     List<Empleado> findByPersonaId_Dni(String dni);
 
-    List<Empleado> findByRol(String rol);
+    List<Empleado> findByRol(UserRol rol);
 }
