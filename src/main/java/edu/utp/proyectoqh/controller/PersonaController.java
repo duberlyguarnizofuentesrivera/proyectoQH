@@ -9,8 +9,5 @@ public class PersonaController {
 
     }
 
-    @GetMapping("/pages/personas")
-    public String personaListado() {
-        return "pages/personas";
-    }
+
 }

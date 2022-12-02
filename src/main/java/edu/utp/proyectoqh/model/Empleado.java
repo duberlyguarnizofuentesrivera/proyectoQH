@@ -24,6 +24,8 @@ public class Empleado {
     @OneToOne(optional = false)
     private Persona personaId;
 
+    private String password;
+
     @Enumerated(EnumType.STRING)
     private UserRol rol;
 

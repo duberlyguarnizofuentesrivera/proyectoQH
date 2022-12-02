@@ -2745,6 +2745,14 @@ progress {
   }
 }
 
+@media (min-width: 768px) {
+  .form-control {
+    width: 50%;
+    margin: 0 7px 0 7px;
+  }
+}
+
+
 .form-control[type="file"] {
   overflow: hidden;
 }
